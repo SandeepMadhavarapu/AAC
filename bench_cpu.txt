@@ -1,0 +1,15 @@
+device: CPU (2 threads) | 16 stereo streams x 5s = 80s of audio
+
+stage                                       time  x realtime
+MDCT (batched FFT)                       143.1ms        559x
+psychoacoustic thresholds                 18.3ms       4375x
+trial quantization (31 gains)           4072.0ms         20x
+reservoir pass (2,000 frames, sequential)    29.6ms
+
+bit packing, 2,048,000 codewords: parallel 1837.9ms vs sequential 592.8ms (0.3x), outputs identical
+
+quality vs bitrate (2s mono test signal):
+  target  32 kbps -> actual   49.5 kbps, SNR  16.4 dB
+  target  64 kbps -> actual   64.8 kbps, SNR  31.9 dB
+  target 128 kbps -> actual  129.5 kbps, SNR  38.7 dB
+  target 256 kbps -> actual  259.3 kbps, SNR  52.3 dB
